@@ -4,4 +4,4 @@ News RSS , One of Project sceens
 
 ## News RSS sceen
 
-[Screenshot](https://github.com/StanPrins/stan/blob/develop/device-2.png)
+![Screenshot](https://github.com/StanPrins/stan/blob/develop/device-2.png)
