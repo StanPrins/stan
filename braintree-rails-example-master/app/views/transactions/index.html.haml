@@ -1,0 +1,27 @@
+- model_class = BraintreeRails::Transaction
+.page-header
+  %h1=t '.title', default: model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:amount)
+      %th= model_class.human_attribute_name(:status)
+      %th= model_class.human_attribute_name(:customer)
+      %th= model_class.human_attribute_name(:credit_card)
+      %th= 'Actions'
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= link_to transaction.id, transaction_path(transaction)
+        %td= transaction.amount
+        %td= transaction.status
+        %td= transaction.customer.full_name
+        %td= transaction.credit_card.masked_number
+        %td
+          = link_to 'Submit', transaction_path(transaction, operation: 'submit_for_settlement'), method: :put, class: 'btn btn-mini btn-primary'
+          = link_to 'Void', transaction_path(transaction, operation: 'void'), method: :put, class: 'btn btn-mini btn-warning'
+          = link_to 'Refund', transaction_path(transaction, operation: 'refund'), method: :put, class: 'btn btn-mini btn-danger'
+
+= link_to 'Back', back_path, class: 'btn'
+= link_to 'New', new_transaction_path, class: 'btn btn-primary'
